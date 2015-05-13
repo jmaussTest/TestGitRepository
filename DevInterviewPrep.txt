@@ -1,0 +1,158 @@
+Interview Prep
+	
+	Data Structures
+	
+		Big O Notation - When solving a problem, there are multiple solutions. Big O analysis helps determine which algorithms are most efficient.
+		
+			based on the time it takes for the algorithm to run as a function of the input size
+			
+			: create a function that, when given an array of ints greater than 0 will return the int that is the smallest in that array
+			
+			two solutions, we say the input is of size n : http://www.programmerinterview.com/index.php/data-structures/big-o-notation/
+				
+			O analysis will ask the question how many times is the input n touched, so in our case, the number of times an array value is compared to another value.
+			
+			In the first example, each value of the array is touched 1 time, as the for statement runs through the array to compare each proceeding number. We give this a Big O score of O(n) which is also known as linear time.
+			
+			Linear time means the time taken to run the algorithm increases in direct proportion to the number of input items. So 80 items would take longer to run than 79 and so on.
+			
+			Another way to say this would be to say the CompareSmallestNumber function has order of n time commplexity.
+			
+			Since the variable curMin which is used to compare the values is initialized to equal 0 before the for loop runs, you might think it should be O(n + 1), however, Big O is concerned about how it will run as n approaches infinite, so the +1 is insignificant in this case. This is also the case in something like n^3 + n. the n is insignificant as it approaches infinite.
+			
+			Worst case in our example would be us trying to find the method that takes the longest to run. 
+			
+			In the second example, we think about the last element to run in the array, as that would take the longest time. Since we are taking every element in the array and comparing it to every other element, we will be doing 100 comparisons with an array of 10 ints. Thus the Big O notation for this will be O(n^2). because the size of the input : n = 10, and the amount of touches is 10 x 10.
+			
+			So, you can see that O(n) will be better and more scalable than O(n^2). Because if we have 1000 elements, the first method will touch a total of 1000 times, but the second will be a total of 1000 x 1000 which is a significant difference.
+		
+		DFS and BFS - Depth First Search and Breadth First Search are search algorithms used for graphs and trees. 
+		
+			BFS - start at the root node, then scan each node in the first level starting from the leftmost moving to the right. Then you continue scanning the subsequent levels, until all nodes are scanned, or you find the node you were searching for.
+			
+			BFS uses a large amount of memory to store pointers that spicify which node to traverse next.
+			
+			DFS - start at the root node, and follow one of the branches of the tree as far as possible until either the node you are looking for is found or you hit a leaf node. (A leaf node is a node with no children).
+			
+			If a leaf node is hit, you continue the search at the nearest ancestor with unexplored children.
+			
+			DFS uses much less memory
+			
+			When to use each - If you know the data you want is at the very bottom of a tree - say a family tree and you are searching for a member who is still alive, Use DFS. But if you are looking for a family member who died long ago, BFS would be faster to scan the upper portions of the tree first.
+			
+		Hash tables and binary search trees - A hash table can insert and retrieve elements in O(1). A binary search tree can insert and retrieve elements in O(log(n)), which is quite a bit slower than the hash table.
+		
+			A hash table is an unordered data structure. So if you were to use a hash table with a cellphone address book, you would need additional memory to sort the values in alphabetical order.
+			
+			A binary search tree is a sorted data structure. There would be no need to use additional memory to sort the data in a binary search tree. So, for an address book that will not have more than 5000 entries, a binary search tree would be the best option even though the O(log(n)) would run slower, because you don't have to use up extra memory for the sort function.
+			
+		Test if a linked list is circular or not - write a function that takes an input pointer to the head of a linked list and determines with true or false whether it is circular or has an ending node.
+		
+		Stack and Heap
+			
+			both stored in RAM
+			
+			In a multi-threaded application, each thread will have its own stack, but all the different threads will share the same heap. There has to be some coordination between the threads so that they don't try to access and manipulate the same pieces of memory in the heap at the same time.
+			
+			objects can be stored on the stack. If an object is created inside a function without using the "new" operator, it will be created and stored on the stack rather than the heap. These objects will be destroyed once the function is complete.
+			
+			Using "new" inside of a function will create the object on the heap. This object must be deleted after use, or else a memory leak will occur.
+			
+			Objects created on the stack within a function will be deleted when the function completes, objects created on the heap will need to manually be deleted.
+			
+			The stack is set to a fixed size, if there is not enough room to handle the memory being assigned, a stack overflow occurs. This often happens when a lot of nested functions are being called, or if there is an infinite recursive call.
+			
+			The operating system can add more memory to the heap if the current size is too small to accommodate the new memory.
+			
+			The stack is much faster than the heap because memory is allocated on the stack simply by moving the stack pointer up.
+			
+			Data on the stack is automatically deallocated when the variables go out of scope. However, data on the heap must be manually deleted, or a garbage collection can be used to auto delete in some languages without the programmer having to do anything.
+			
+			Problems - If the stack runs out of memory, a stack overflow will occur. The heap could have problems with fragmentation, which occurs when the available memory on the heap is being stored as disconnected blocks. So even though there is enough memory for desired allocation, there may not be enough in one block for the desired allocation amount.
+						
+	Possible SQL Questions
+		
+		Difference between an inner and an outer join
+			
+			Outer Joins
+			
+				Joins are used to combine the data from two tables, with the result being a new temp table.
+				
+				by default, joins are outer joins
+				
+				A left outer join will retain all information from the left (or 1st table) table regardless of whether there is a row that matches on the right table.
+				
+				A right outer join will retain all info from the right or second table regardless of whether the info exists on the left
+				
+				the join predicate is the on statement
+			
+			Inner Joins
+			
+				Inner joins will return only rows that match based on the join predicate. 
+			
+				can also be written as :
+					select * from employee, location
+					where employee.empID = location.empID
+				
+	Operating Systems
+		
+		Virtual Memory - Real or physical memory exists on RAM chips.
+						 Virtual memory doesn't physically exist, and is implemented by the operating system in order to give the application program the impression that it has more memory than it really doesn
+				
+				
+		
+		
+	Recursion - Any routine that calls itself is a recursive routine
+
+		Recursion is best used when a large task can be broken down into repetitive sub-tasks. Because recursive methods call themselves to perform sub-tasks, eventually it will come across a sub-task that it can handle without calling itself again. This is called the base case, and it prevents the infinite loop of the recursive method.
+		
+		2 types of cases in recursive algorithms : base cases and recursive cases. Ask yourself what is my base case, and what is my recursive case.
+		
+		Factorial is the most used example : "x!" is a factorial, and is the product of all of the numbers before and equal to x so 5! = 5x4x3x2x1. 
+		Recursively attacking this, you would do (x * (x-1)!), basically you are multiplying x by the factorial of the number before x.
+		
+		public int factorial (int x){
+			if (x > 1)
+			{
+				//recursive case:
+				return factorial(x-1) * x;
+			}
+			else  /*base case*/
+				return 1;
+			}
+			
+		Iterative Factorial method :
+
+			int factorial ( int input )
+			{
+			int x, fact = 1;
+			for ( x = input; x > 1; x--)
+				fact *= x;
+			return fact;
+			}
+			
+		Recursion vs Iteration - recursion is rarely the most efficient method. There is usually more overhead associated with making recursive calls due to the fact that the call stack is so heavily used. many languages will spend more time maintaining the call stack than actually performing the necessary calculations.
+		
+		Recursion uses more memory
+		
+		Recursion is simpler to implement, and other programmers will be able to read it easier.
+		
+		
+			
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
